@@ -10,10 +10,17 @@
     }"
   >
     <ul class="list list-userdetails" ref="listUser">
-      <li><img v-bind:src="userPrimaryDataRaw.avatar" alt="avatar" /></li>
-      <li v-for="(value, key, index) in userPrimaryDataFixed" :key="index">
+      <li><img v-bind:src="userPrimaryData.avatar" alt="avatar" /></li>
+      <li v-for="(value, key, index) in userPrimaryData" :key="index">
         <p v-if="index > 0">
-          <strong> {{ key }} </strong>: {{ value }}
+          <strong>
+            {{
+              (key.slice(0, 1).toUpperCase() + key.slice(1)).replaceAll(
+                "_",
+                " "
+              )
+            }} </strong
+          >: {{ value }}
         </p>
       </li>
     </ul>
@@ -50,7 +57,7 @@ export default {
     return {
       store,
       initialized: false,
-      userPrimaryDataRaw: {
+      userPrimaryData: {
         avatar: null,
         username: null,
         first_name: null,
@@ -59,7 +66,6 @@ export default {
         phone_number: null,
       },
 
-      userPrimaryDataFixed: {},
       subsribtionDetails: null,
       subsribtionDetailTransformValue: "translateX(-100%)",
     };
@@ -71,7 +77,7 @@ export default {
 
   methods: {
     setAddress(address) {
-      this.userPrimaryDataFixed.Address = address;
+      this.userPrimaryData.address = address;
     },
 
     setSubscriptionDetailsVisibility(e) {
@@ -114,29 +120,15 @@ export default {
     checkIfUserExists() {
       const parsedUser = JSON.parse(localStorage.getItem("user"));
       if (parsedUser) {
-        Object.keys(this.userPrimaryDataRaw).map((key) => {
-          this.userPrimaryDataRaw[key] = parsedUser[key];
+        Object.keys(this.userPrimaryData).map((key) => {
+          this.userPrimaryData[key] = parsedUser[key];
         });
-
-        this.userPrimaryDataFixed = Object.keys(this.userPrimaryDataRaw)
-          .map((key) => {
-            const curr_key = (
-              key.slice(0, 1).toUpperCase() + key.slice(1)
-            ).replaceAll("_", " ");
-
-            const newObj = { [curr_key]: parsedUser[key] };
-
-            return newObj;
-          })
-          .reduce((prev, curr) => {
-            return { ...prev, ...curr };
-          }, {});
 
         this.setAddress(parsedUser.address.city);
         this.setSubscribtionDetails(parsedUser);
       } else {
-        Object.keys(this.userPrimaryDataRaw).map(
-          (key) => (this.userPrimaryDataRaw[key] = "Data not set atm...")
+        Object.keys(this.userPrimaryData).map(
+          (key) => (this.userPrimaryData[key] = "Data not set atm...")
         );
 
         //attempting to upload a user after 1s:
