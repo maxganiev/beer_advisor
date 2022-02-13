@@ -1,26 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main>
+    <Alert />
+    <Header />
+    <Login />
+    <UserPanel />
+    <Loader />
+    <BeerComponent />
+    <Footer />
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Alert from "./components/alert.vue";
+import Header from "./components/header.vue";
+import Login from "./components/login.vue";
+import Loader from "./components/loader.vue";
+import BeerComponent from "./components/beerComponent.vue";
+import UserPanel from "./components/userPanel.vue";
+import Footer from "./components/footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Login,
+    UserPanel,
+    Loader,
+    BeerComponent,
+    Footer,
+    Alert,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

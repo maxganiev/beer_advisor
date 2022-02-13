@@ -1,0 +1,288 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+//vars
+//font sizes:
+$fs-lg: 1.6rem;
+$fs-mid: calc(0.5em + 1vmin);
+$fs-sm: calc(0.35em + 1vmin);
+
+//bg color:
+$bg-clr-mustard: rgba(225, 173, 1, 0.7);
+$bg-clr-red: rgb(245, 66, 81);
+$bg-clr-green: #028c00;
+
+//font colors:
+$f-clr-black: #000;
+
+//service
+li {
+	list-style-type: none;
+}
+
+.btn {
+	width: 30%;
+	border: none;
+	border-radius: 8px;
+	height: 24px;
+	background-color: $bg-clr-mustard;
+	font-size: calc(0.4em + 1vmin);
+	&:hover {
+		cursor: pointer;
+		opacity: 0.8;
+		transition: all 0.6s ease-out;
+	}
+}
+
+main {
+	width: 100%;
+	height: 120vh;
+	overflow: hidden;
+	position: relative;
+
+	.alert {
+		&-hidden {
+			display: none;
+		}
+
+		&-authErr,
+		&-hint {
+			display: flex;
+			position: absolute;
+			top: 9%;
+			width: 80%;
+			height: 7vh;
+			left: 10%;
+			justify-content: center;
+			align-items: center;
+			z-index: 30;
+			border-radius: 8px;
+			color: $f-clr-black;
+			font-size: $fs-mid;
+			text-align: center;
+		}
+
+		&-authErr {
+			background-color: $bg-clr-red;
+		}
+
+		&-hint {
+			background-color: $bg-clr-green;
+			color: #fff;
+		}
+	}
+
+	.login {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100vh;
+		justify-content: center;
+		align-items: center;
+		z-index: 20;
+		position: absolute;
+		top: 9%;
+		left: 0;
+		line-height: 3rem;
+		background-color: rgba(255, 255, 255, 1);
+
+		.btn-submit {
+			transform: translateY(85%);
+		}
+	}
+
+	.loader {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.4);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 20;
+	}
+
+	header {
+		height: 9%;
+		width: inherit;
+		background-color: $bg-clr-mustard;
+		color: $f-clr-black;
+		font-size: $fs-sm;
+		position: relative;
+		padding-top: 0.8%;
+
+		p {
+			position: absolute;
+			top: 25%;
+			right: 25% !important;
+			max-width: 15%;
+		}
+
+		p > i {
+			display: contents;
+		}
+
+		a:visited,
+		:not(:visited) {
+			text-decoration: none;
+			color: $f-clr-black;
+			position: absolute;
+			top: 25%;
+			right: 3%;
+		}
+
+		.toggler {
+			position: absolute;
+			top: 25%;
+			left: 3%;
+			width: 25px;
+			height: 25px;
+		}
+
+		.toggle-checkbox {
+			z-index: 10;
+			opacity: 0;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.toggle-img {
+			z-index: 0;
+			transition: all 0.6s ease-in-out;
+		}
+	}
+
+	.user-panel {
+		transform: translateX(-100%);
+		transition: transform 0.6s ease-in-out;
+		height: 70%;
+		position: relative;
+		width: inherit;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+
+		.btn-subscr-details {
+			width: 40%;
+			margin: 0 auto;
+		}
+
+		.list {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.8rem;
+			line-height: 1.4rem;
+
+			&-userdetails {
+				height: 100%;
+				li {
+					width: auto;
+					img {
+						object-fit: contain;
+						width: 50%;
+						border-radius: 50%;
+						border: 0.6px #000 solid;
+						transform: translateX(50%) translateY(-3%);
+					}
+				}
+			}
+
+			&-subscription {
+				height: 0%;
+				transition: all 0.6s ease-in-out;
+			}
+		}
+	}
+
+	.area-sel-beer {
+		width: inherit;
+		height: 70%;
+		position: absolute;
+		top: 12%;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+
+		//div
+		& > div:first-child {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			img {
+				object-fit: contain;
+				width: 20%;
+			}
+		}
+
+		.list-beerdesc {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			line-height: 2rem;
+			font-size: $fs-mid;
+			height: 100%;
+			justify-content: center;
+
+			li {
+				img {
+					object-fit: contain;
+					width: 20%;
+					transform: translateX(200%);
+				}
+
+				.btn-beer-selection {
+					width: 100%;
+				}
+
+				&:last-child {
+					width: 35%;
+					position: absolute;
+					bottom: 5%;
+				}
+			}
+		}
+	}
+
+	footer {
+		width: 100%;
+		height: 8%;
+		background-color: $bg-clr-mustard;
+		display: flex;
+		justify-content: space-around;
+		position: absolute;
+		bottom: 0;
+		align-items: center;
+
+		h4 {
+			font-weight: 400;
+			font-size: $fs-sm;
+		}
+
+		a {
+			cursor: pointer;
+			width: 10%;
+			img {
+				object-fit: contain;
+				width: 30%;
+			}
+		}
+	}
+}
+
+@import './mobile.scss';
